@@ -126,99 +126,133 @@
   <div class="container">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
       <h6 class="text-primary text-uppercase">// Contactez-nous //</h6>
-      <h1 class="mb-5">Besoin d'aide ? Écrivez-nous</h1>
+      <h1 class="mb-5">Contactez-nous pour toute demande</h1>
     </div>
-
-    <div class="row g-5">
-
-      <!-- Carte & Bouton -->
-      <div class="col-lg-6 col-12">
-        <div class="wow fadeIn" data-wow-delay="0.1s">
-          <div class="mb-3">
-            <iframe class="position-relative rounded w-100"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13720752.828070203!2d1.6596261043075726!3d28.017800289670087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x127f5e2d3cd0d92b%3A0xa9e337937a28c3d0!2sAlg%C3%A9rie!5e0!3m2!1sfr!2sdz!4v1718299200000!5m2!1sfr!2sdz"
-              frameborder="0" style="min-height: 300px; border:0;" allowfullscreen="" aria-hidden="false"
-              tabindex="0"></iframe>
+    <div class="row g-4">
+      <div class="col-12">
+        <div class="row gy-4">
+          <div class="col-md-4">
+            <div class="bg-light d-flex flex-column justify-content-center p-4">
+              <h5 class="text-uppercase">// Réservations //</h5>
+              <p class="m-0"><i class="fa fa-envelope-open text-primary me-2"></i>garagiservices@gmail.com</p>
+            </div>
           </div>
-          <div class="d-grid gap-2">
-            <button onclick="getLocation()" class="btn btn-outline-primary">
-              📍 Cliquez ici pour ajouter votre position
-            </button>
-            <p id="locationLink" class="mt-2 text-muted small"></p>
+          <div class="col-md-4">
+            <div class="bg-light d-flex flex-column justify-content-center p-4">
+              <h5 class="text-uppercase">// Général //</h5>
+              <p class="m-0"><i class="fa fa-envelope-open text-primary me-2"></i>info@example.com</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="bg-light d-flex flex-column justify-content-center p-4">
+              <h5 class="text-uppercase">// Technique //</h5>
+              <p class="m-0"><i class="fa fa-envelope-open text-primary me-2"></i>tech@example.com</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Formulaire -->
-      <div class="col-lg-6 col-12">
+      <!-- Map -->
+      <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
+        <iframe class="position-relative rounded w-100 h-100"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10253098.836370835!2d1.3557117277900137!3d28.016639084873836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x127f5e4c9e31cbcb%3A0x8772601abceaa3c0!2sAlg%C3%A9rie!5e0!3m2!1sfr!2sdz!4v1718299813133"
+          frameborder="0" style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false"
+          tabindex="0"></iframe>
+      </div>
+
+      <!-- Form -->
+      <div class="col-md-6">
         <div class="wow fadeInUp" data-wow-delay="0.2s">
-          <p class="mb-4">Remplissez le formulaire ci-dessous et notre équipe vous contactera rapidement.</p>
           <form action="https://formspree.io/f/meokgyaj" method="POST">
             <div class="row g-3">
               <div class="col-md-6">
                 <div class="form-floating">
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Votre nom" required>
-                  <label for="name">Nom complet</label>
+                  <input type="text" class="form-control" id="name" name="Nom" placeholder="Votre nom" required>
+                  <label for="name">Votre nom</label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-floating">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Votre email" required>
-                  <label for="email">Adresse email</label>
+                  <input type="email" class="form-control" id="email" name="Email" placeholder="Votre Email" required>
+                  <label for="email">Votre Email</label>
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-floating">
-                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Objet" required>
-                  <label for="subject">Objet</label>
+                  <input type="text" class="form-control" id="subject" name="Sujet" placeholder="Sujet">
+                  <label for="subject">Sujet</label>
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-floating">
-                  <textarea class="form-control" name="message" placeholder="Votre message ici" id="message"
-                    style="height: 120px" required></textarea>
+                  <textarea class="form-control" placeholder="Laissez votre message ici" name="Message" id="message" style="height: 100px" required></textarea>
                   <label for="message">Message</label>
                 </div>
+                <div class="mt-2">
+                  <button type="button" onclick="getLocation()" class="btn btn-outline-primary btn-sm">
+                    📍 Cliquez ici pour ajouter votre position
+                  </button>
+                  <div id="locationLink" class="mt-2 text-success small"></div>
+                </div>
               </div>
               <div class="col-12">
-                <button class="btn btn-primary w-100 py-3" type="submit">Envoyer le message</button>
+                <button id="submitBtn" class="btn btn-primary w-100 py-3" type="submit" disabled>Envoyer le message</button>
               </div>
             </div>
           </form>
         </div>
       </div>
-
     </div>
   </div>
 </div>
 <!-- Contact End -->
 
-<!-- Script: Géolocalisation + insertion dans message -->
+<!-- JavaScript -->
 <script>
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
+function getLocation() {
+  const confirmation = confirm("📍 من فضلك فعّل زر 'Location Accuracy' (الموقع بدقة عالية) من إعدادات هاتفك قبل المتابعة.\n\nهل فعلت ذلك؟");
+
+  if (!confirmation) {
+    return;
+  }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
+        const accuracy = position.coords.accuracy;
+
+        if (accuracy > 100) {
+          alert("⚠️ يبدو أن الموقع غير دقيق. يرجى تفعيل GPS بدقة عالية.");
+          return;
+        }
+
         const mapLink = `https://www.google.com/maps?q=${lat},${lon}`;
-
-        // Afficher le lien
         document.getElementById("locationLink").innerHTML =
-          `📍 Voici votre position : <a href="${mapLink}" target="_blank">${mapLink}</a><br>Ce lien a été automatiquement ajouté dans le message.`;
+          `📍 Voici votre position : <a href="${mapLink}" target="_blank">${mapLink}</a><br>✅ Ce lien a été ajouté automatiquement au message.`;
 
-        // Ajouter dans le champ message
         const messageField = document.getElementById("message");
         const currentText = messageField.value;
         messageField.value = `Voici ma position : ${mapLink}\n\n${currentText}`;
         messageField.focus();
-      }, function () {
-        alert("Impossible d'obtenir votre position.");
-      });
-    } else {
-      alert("Votre navigateur ne supporte pas la géolocalisation.");
-    }
+
+        document.getElementById("submitBtn").disabled = false;
+      },
+      function (error) {
+        if (error.code === error.PERMISSION_DENIED) {
+          alert("❌ Vous avez refusé l'accès à la position.");
+        } else {
+          alert("⚠️ Une erreur est survenue lors de la localisation.");
+        }
+      }
+    );
+  } else {
+    alert("❌ Votre navigateur ne supporte pas la géolocalisation.");
   }
+}
 </script>
+
 
 
 
