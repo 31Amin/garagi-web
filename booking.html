@@ -160,64 +160,95 @@
     <!-- Service End -->
 
 
-    <!-- Booking Start -->
-    <div class="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="row gx-5">
-                <div class="col-lg-6 py-5">
-                    <div class="py-5">
-                        <h1 class="text-white mb-4">Demandez nos services maintenant, votre confort est notre responsabilité.</h1>
-                        <p class="text-white mb-0"></p>
-                    </div>
+   <!-- Booking Start -->
+<div class="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-lg-6 py-5">
+                <div class="py-5">
+                    <h1 class="text-white mb-4">Demandez nos services maintenant, votre confort est notre responsabilité.</h1>
+                    <p class="text-white mb-0">Remplissez le formulaire ci-contre pour réserver votre service en quelques clics.</p>
                 </div>
-                <div class="col-lg-6">
-                    <div class="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
-                        <h1 class="text-white mb-4">Réserver un sérvice</h1>
-    
-                        <form action="https://formspree.io/f/xqaqevgj" method="POST">
-                            <input type="hidden" name="_autoresponse" value="Merci pour votre demande. Nous vous contacterons bientôt.">
-                            <input type="hidden" name="_captcha" value="false">
-    
-                            <div class="row g-3">
-                                <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Votre nom" name="Nom" required style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input
-                                    type="tel"
-                                    class="form-control border-0"
-                                    placeholder="Votre Numéro Téléphone"
-                                    name="telephone"
-                                    required
-                                    style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <select class="form-select border-0" name="Service" required style="height: 55px;">
-                                        <option selected disabled>Choisissez votre service</option>
-                                        <option value="Entretien et lavage mobile">Entretien et lavage mobile</option>
-                                        <option value="Transport et remorquage">Transport et remorquage</option>
-                                        <option value="Assistance routière">Assistance routière</option>
-                                        <option value="Vérification de véhicule">Vérification de véhicule</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0 datetimepicker-input" placeholder="Service Date" data-target="#date1" data-toggle="datetimepicker" style="height: 55px;">
-                                </div>
-                                <div class="col-12">
-                                    <textarea class="form-control border-0" placeholder="Demande spéciale" name="Message" rows="3"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-secondary w-100 py-3" type="submit">Réserver maintenant</button>
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
+                    <h1 class="text-white mb-4">Réserver un service</h1>
+
+                    <form action="https://formspree.io/f/xqaqevgj" method="POST">
+                        <input type="hidden" name="_autoresponse" value="Merci pour votre demande. Nous vous contacterons bientôt.">
+                        <input type="hidden" name="_captcha" value="false">
+
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control border-0" placeholder="Votre nom" name="Nom" required style="height: 55px;">
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="tel" class="form-control border-0" placeholder="Votre Numéro Téléphone" name="telephone" required style="height: 55px;">
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <select class="form-select border-0" name="Service" required style="height: 55px;">
+                                    <option selected disabled>Choisissez votre service</option>
+                                    <option value="Entretien et lavage mobile">Entretien et lavage mobile</option>
+                                    <option value="Transport et remorquage">Transport et remorquage</option>
+                                    <option value="Assistance routière">Assistance routière</option>
+                                    <option value="Vérification de véhicule">Vérification de véhicule</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div class="input-group" id="datetimepicker">
+                                    <input type="text"
+                                           class="form-control border-0"
+                                           placeholder="Date et Heure"
+                                           id="datetimeInput"
+                                           name="Date"
+                                           required
+                                           style="height: 55px;" />
+                                    <span class="input-group-text bg-white border-0">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
                                 </div>
                             </div>
-                        </form>
-    
-                    </div>
+                            <div class="col-12">
+                                <textarea class="form-control border-0" placeholder="Demande spéciale" name="Message" rows="3"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-secondary w-100 py-3" type="submit">Réserver maintenant</button>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>
     </div>
-    <!-- Booking End -->
+</div>
+<!-- Booking End -->
+
+<!-- Librairies DateTime Picker -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/js/tempus-dominus.min.js"></script>
+
+<!-- Script d’activation du DateTime Picker -->
+<script>
+    const picker = new tempusDominus.TempusDominus(document.getElementById('datetimepicker'), {
+        display: {
+            components: {
+                calendar: true,
+                date: true,
+                month: true,
+                year: true,
+                decades: true,
+                clock: true,
+                hours: true,
+                minutes: true,
+                seconds: false,
+                useTwentyfourHour: true
+            }
+        }
+    });
+</script>
+
 
 
     <!-- Call To Action Start -->
