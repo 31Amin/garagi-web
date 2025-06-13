@@ -128,24 +128,29 @@
       <h6 class="text-primary text-uppercase">// Contactez-nous //</h6>
       <h1 class="mb-5">Besoin d'aide ? Écrivez-nous</h1>
     </div>
-    <div class="row g-4">
 
-      <!-- Map + Localisation -->
-      <div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
-        <iframe class="position-relative rounded w-100 h-100"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13720752.828070203!2d1.6596261043075726!3d28.017800289670087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x127f5e2d3cd0d92b%3A0xa9e337937a28c3d0!2sAlg%C3%A9rie!5e0!3m2!1sfr!2sdz!4v1718299200000!5m2!1sfr!2sdz"
-          frameborder="0" style="min-height: 350px; border:0;" allowfullscreen="" aria-hidden="false"
-          tabindex="0"></iframe>
-        <div class="mt-2">
-          <button onclick="getLocation()" class="btn btn-outline-primary w-100 mt-3">
-            📍 Cliquez ici pour ajouter votre position
-          </button>
-          <p id="locationLink" class="mt-2 text-muted small"></p>
+    <div class="row g-5">
+
+      <!-- Carte & Bouton -->
+      <div class="col-lg-6 col-12">
+        <div class="wow fadeIn" data-wow-delay="0.1s">
+          <div class="mb-3">
+            <iframe class="position-relative rounded w-100"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13720752.828070203!2d1.6596261043075726!3d28.017800289670087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x127f5e2d3cd0d92b%3A0xa9e337937a28c3d0!2sAlg%C3%A9rie!5e0!3m2!1sfr!2sdz!4v1718299200000!5m2!1sfr!2sdz"
+              frameborder="0" style="min-height: 300px; border:0;" allowfullscreen="" aria-hidden="false"
+              tabindex="0"></iframe>
+          </div>
+          <div class="d-grid gap-2">
+            <button onclick="getLocation()" class="btn btn-outline-primary">
+              📍 Cliquez ici pour ajouter votre position
+            </button>
+            <p id="locationLink" class="mt-2 text-muted small"></p>
+          </div>
         </div>
       </div>
 
       <!-- Formulaire -->
-      <div class="col-md-6">
+      <div class="col-lg-6 col-12">
         <div class="wow fadeInUp" data-wow-delay="0.2s">
           <p class="mb-4">Remplissez le formulaire ci-dessous et notre équipe vous contactera rapidement.</p>
           <form action="https://formspree.io/f/meokgyaj" method="POST">
@@ -188,7 +193,7 @@
 </div>
 <!-- Contact End -->
 
-<!-- Script: Localisation auto dans le message -->
+<!-- Script: Géolocalisation + insertion dans message -->
 <script>
   function getLocation() {
     if (navigator.geolocation) {
@@ -196,12 +201,12 @@
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
         const mapLink = `https://www.google.com/maps?q=${lat},${lon}`;
-        
-        // Affichage du lien
+
+        // Afficher le lien
         document.getElementById("locationLink").innerHTML =
           `📍 Voici votre position : <a href="${mapLink}" target="_blank">${mapLink}</a><br>Ce lien a été automatiquement ajouté dans le message.`;
 
-        // Ajout dans le champ message
+        // Ajouter dans le champ message
         const messageField = document.getElementById("message");
         const currentText = messageField.value;
         messageField.value = `Voici ma position : ${mapLink}\n\n${currentText}`;
