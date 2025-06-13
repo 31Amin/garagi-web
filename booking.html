@@ -160,7 +160,7 @@
     <!-- Service End -->
 
 
-   <!-- Booking Start -->
+ <!-- Booking Start -->
 <div class="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container">
         <div class="row gx-5">
@@ -177,6 +177,9 @@
                     <form action="https://formspree.io/f/xqaqevgj" method="POST">
                         <input type="hidden" name="_autoresponse" value="Merci pour votre demande. Nous vous contacterons bientôt.">
                         <input type="hidden" name="_captcha" value="false">
+
+                        <!-- Hidden input to store location -->
+                        <input type="hidden" name="Localisation" id="localisation">
 
                         <div class="row g-3">
                             <div class="col-12 col-sm-6">
@@ -207,6 +210,13 @@
                                         <i class="fa fa-calendar"></i>
                                     </span>
                                 </div>
+                            </div>
+                            <!-- Location button -->
+                            <div class="col-12">
+                                <button type="button" class="btn btn-light w-100 py-3" onclick="getLocation()">
+                                    📍 Cliquez ici pour ajouter votre position
+                                </button>
+                                <small id="locationMessage" class="text-white d-block mt-2"></small>
                             </div>
                             <div class="col-12">
                                 <textarea class="form-control border-0" placeholder="Demande spéciale" name="Message" rows="3"></textarea>
@@ -247,7 +257,41 @@
             }
         }
     });
+
+    function getLocation() {
+        const message = document.getElementById('locationMessage');
+        if (!navigator.geolocation) {
+            message.innerText = "La géolocalisation n’est pas supportée par ce navigateur.";
+            return;
+        }
+        message.innerText = "Veuillez activer la précision de localisation (GPS) puis autoriser l'accès...";
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+                document.getElementById("localisation").value = `https://www.google.com/maps?q=${lat},${lon}`;
+                message.innerText = "📍 Position détectée avec succès !";
+            },
+            function (error) {
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        message.innerText = "⚠️ Vous devez autoriser l'accès à la localisation.";
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        message.innerText = "⚠️ Position indisponible.";
+                        break;
+                    case error.TIMEOUT:
+                        message.innerText = "⏱️ La requête a expiré.";
+                        break;
+                    default:
+                        message.innerText = "❌ Une erreur est survenue.";
+                        break;
+                }
+            }
+        );
+    }
 </script>
+
 
 
 
