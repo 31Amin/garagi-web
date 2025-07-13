@@ -426,7 +426,7 @@ src="https://www.facebook.com/tr?id=3418766691598251&ev=PageView&noscript=1"
         const bookingForm = document.querySelector('form[action*="formspree"]');
         if (bookingForm) {
             bookingForm.addEventListener('submit', function () {
-                fbq('track', 'Lead');
+                fbq('track', 'Purchase');
             });
         }
     });
