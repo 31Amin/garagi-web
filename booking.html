@@ -178,7 +178,7 @@ src="https://www.facebook.com/tr?id=3418766691598251&ev=PageView&noscript=1"
     <!-- Service End -->
 
 
-  <!-- Booking Start -->
+<!-- Booking Start -->
 <div class="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container">
         <div class="row gx-5">
@@ -207,9 +207,9 @@ src="https://www.facebook.com/tr?id=3418766691598251&ev=PageView&noscript=1"
                                 <input type="tel" class="form-control border-0" placeholder="Votre Numéro Téléphone" name="telephone" required style="height: 55px;">
                             </div>
                             <div class="col-12 col-sm-6">
-                                <select class="form-select border-0" name="Service" required style="height: 55px;">
+                                <select class="form-select border-0" name="Service" id="serviceSelect" required style="height: 55px;">
                                     <option selected disabled>Choisissez votre service</option>
-                                    <option value="Entretien et lavage mobile">Entretien et lavage mobile</option>
+                                    <option value="lavage mobile">lavage mobile</option>
                                     <option value="Transport et remorquage">Transport et remorquage</option>
                                     <option value="Assistance routière">Assistance routière</option>
                                     <option value="Vérification de véhicule">Vérification de véhicule</option>
@@ -239,6 +239,14 @@ src="https://www.facebook.com/tr?id=3418766691598251&ev=PageView&noscript=1"
                             <div class="col-12">
                                 <textarea class="form-control border-0" placeholder="Demande spéciale" name="Message" rows="3"></textarea>
                             </div>
+
+                            <!-- Zone du prix -->
+                            <div class="col-12">
+                                <div id="servicePrice" class="bg-white text-success fw-bold rounded py-3 px-4 mt-3 d-inline-block shadow-sm" style="font-size: 1.3rem; max-width: 100%; word-wrap: break-word;">
+                                    👉 CHOISIS UN SERVICE POUR VOIR LE PRIX
+                                </div>
+                            </div>
+
                             <div class="col-12">
                                 <button class="btn btn-secondary w-100 py-3" type="submit">Réserver maintenant</button>
                             </div>
@@ -252,63 +260,46 @@ src="https://www.facebook.com/tr?id=3418766691598251&ev=PageView&noscript=1"
 </div>
 <!-- Booking End -->
 
-<!-- Librairies DateTime Picker -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/js/tempus-dominus.min.js"></script>
-
-<!-- Script d’activation du DateTime Picker -->
 <script>
-    const picker = new tempusDominus.TempusDominus(document.getElementById('datetimepicker'), {
-        display: {
-            components: {
-                calendar: true,
-                date: true,
-                month: true,
-                year: true,
-                decades: true,
-                clock: true,
-                hours: true,
-                minutes: true,
-                seconds: false,
-                useTwentyfourHour: true
+    const serviceSelect = document.getElementById('serviceSelect');
+    const servicePrice = document.getElementById('servicePrice');
+
+    const servicePrices = {
+        'lavage mobile': '1000 DZD - lavage extérieur et intérieur',
+        'Transport et remorquage': '200 DZD / km',
+        'Assistance routière': '1000 DZD',
+        'Vérification de véhicule': '1500 DZD'
+    };
+
+    if (serviceSelect) {
+        serviceSelect.addEventListener('change', function() {
+            const selectedService = this.value;
+            if (servicePrices[selectedService]) {
+                servicePrice.textContent = `💰 ${servicePrices[selectedService]}`;
+            } else {
+                servicePrice.textContent = "👉 CHOISIS UN SERVICE POUR VOIR LE PRIX";
             }
-        }
-    });
+        });
+    }
 
     function getLocation() {
-        const message = document.getElementById('locationMessage');
-        if (!navigator.geolocation) {
-            message.innerText = "La géolocalisation n’est pas supportée par ce navigateur.";
-            return;
+        const locationMessage = document.getElementById('locationMessage');
+        const localisationInput = document.getElementById('localisation');
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                const coords = `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+                localisationInput.value = coords;
+                locationMessage.textContent = "✅ Localisation ajoutée avec succès.";
+            }, function(error) {
+                locationMessage.textContent = "Impossible d'obtenir la localisation.";
+            });
+        } else {
+            locationMessage.textContent = "La géolocalisation n'est pas supportée par ce navigateur.";
         }
-        message.innerText = "Veuillez activer la précision de localisation (GPS) puis autoriser l'accès...";
-        navigator.geolocation.getCurrentPosition(
-            function (position) {
-                const lat = position.coords.latitude;
-                const lon = position.coords.longitude;
-                document.getElementById("localisation").value = `https://www.google.com/maps?q=${lat},${lon}`;
-                message.innerText = "📍 Position détectée avec succès !";
-            },
-            function (error) {
-                switch (error.code) {
-                    case error.PERMISSION_DENIED:
-                        message.innerText = "⚠️ Vous devez autoriser l'accès à la localisation.";
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        message.innerText = "⚠️ Position indisponible.";
-                        break;
-                    case error.TIMEOUT:
-                        message.innerText = "⏱️ La requête a expiré.";
-                        break;
-                    default:
-                        message.innerText = "❌ Une erreur est survenue.";
-                        break;
-                }
-            }
-        );
     }
 </script>
+
 
 
 
@@ -421,16 +412,6 @@ src="https://www.facebook.com/tr?id=3418766691598251&ev=PageView&noscript=1"
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const bookingForm = document.querySelector('form[action*="formspree"]');
-        if (bookingForm) {
-            bookingForm.addEventListener('submit', function () {
-                fbq('track', 'Purchase');
-            });
-        }
-    });
-</script>
 </body>
 
 </html>
